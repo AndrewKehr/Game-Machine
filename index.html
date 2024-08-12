@@ -3,24 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Random Loot Generator</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Gacha Machine</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        #gacha-container {
+            margin-top: 20px;
+        }
+        #gacha-slot {
+            width: 300px;
+            height: 200px;
+            border: 2px solid #000;
+            margin: 0 auto;
+            background-color: #f0f0f0;
+            line-height: 200px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <h1>🎰 Don't fret, All of it is bad 🎰</h1>
-        <p>Use different coins to get different types of prizes!</p>
-        <div id="gacha-machine">
-            <div id="gacha-slot">🎲</div>
-            <div id="result"></div>
-        </div>
-        <div class="buttons">
-            <button onclick="pullGacha('common')">Common Coin</button>
-            <button onclick="pullGacha('uncommon')">Uncommon Coin</button>
-            <button onclick="pullGacha('rare')">Rare Coin</button>
-            <button onclick="pullGacha('spell')">Spell Coin</button>
-        </div>
+    <h1>Gacha Machine</h1>
+    <p>Use different tokens to get different types of prizes!</p>
+    
+    <div id="view-controls">
+        <button onclick="showItems()">Show Items</button>
+        <button onclick="showSpells()">Show Spells</button>
     </div>
+
+    <div id="gacha-container">
+        <div id="gacha-slot">Spin!</div>
+        <button onclick="pullGacha('common')">Use Common Coin</button>
+        <button onclick="pullGacha('uncommon')">Use Uncommon Coin</button>
+        <button onclick="pullGacha('rare')">Use Rare Coin</button>
+    </div>
+    
+    <div id="result"></div>
+
     <script src="gacha.js"></script>
 </body>
 </html>
