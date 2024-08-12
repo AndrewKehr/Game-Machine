@@ -51,76 +51,36 @@ const rareItems = [
     { name: "Plate Carrier of the Mage Hater", rarity: "Rare", stats: "Defense: 15, Slots: 4, Quality: 7, Special: Enemies within 30 ft have -2 Intelligence" }
 ];
 
-// Probabilities
-const probabilities = {
-    common: { common: 70, uncommon: 20, rare: 5, spell: 5 },
-    uncommon: { common: 0, uncommon: 70, rare: 20, spell: 10 },
-    rare: { common: 0, uncommon: 0, rare: 100, spell: 0 },
-};
-
-function getRandomItem(array) {
-    return array[Math.floor(Math.random() * array.length)];
-}
-
+// Function to pull from the gacha machine
 function pullGacha(tokenType) {
-    const randomNumber = Math.floor(Math.random() * 100) + 1;
-    let prize = "";
-    let upgraded = false;
-    
-    const isSpell = randomNumber <= probabilities[tokenType].spell;
-    
+    let selectedGroup;
+    const groupChance = Math.random();
+
     if (tokenType === 'common') {
-        if (isSpell) {
-            prize = getRandomItem(commonSpells);
+        // Common Coin: 60% Common, 30% Uncommon, 10% Rare
+        if (groupChance < 0.6) {
+            selectedGroup = commonItems;
+        } else if (groupChance < 0.9) {
+            selectedGroup = uncommonItems;
         } else {
-            if (randomNumber <= probabilities.common.common) {
-                prize = getRandomItem(commonItems);
-            } else if (randomNumber <= probabilities.common.common + probabilities.common.uncommon) {
-                prize = getRandomItem(uncommonItems);
-                upgraded = true;
-            } else if (randomNumber <= probabilities.common.common + probabilities.common.uncommon + probabilities.common.rare) {
-                prize = getRandomItem(rareItems);
-                upgraded = true;
-            } else {
-                prize = getRandomItem(commonSpells);
-                upgraded = true;
-            }
+            selectedGroup = rareItems;
         }
     } else if (tokenType === 'uncommon') {
-        if (isSpell) {
-            prize = getRandomItem(uncommonSpells);
+        // Uncommon Coin: 0% Common, 60% Uncommon, 40% Rare
+        if (groupChance < 0.6) {
+            selectedGroup = uncommonItems;
         } else {
-            if (randomNumber <= probabilities.uncommon.common) {
-                prize = getRandomItem(commonItems);
-            } else if (randomNumber <= probabilities.uncommon.common + probabilities.uncommon.uncommon) {
-                prize = getRandomItem(uncommonItems);
-            } else if (randomNumber <= probabilities.uncommon.common + probabilities.uncommon.uncommon + probabilities.uncommon.rare) {
-                prize = getRandomItem(rareItems);
-                upgraded = true;
-            } else {
-                prize = getRandomItem(uncommonSpells);
-                upgraded = true;
-            }
+            selectedGroup = rareItems;
         }
     } else if (tokenType === 'rare') {
-        if (isSpell) {
-            prize = getRandomItem(rareSpells);
-        } else {
-            prize = getRandomItem(rareItems);
-        }
+        // Rare Coin: 100% Rare
+        selectedGroup = rareItems;
     }
-    
-    if (prize) {
-        const prizeDetails = formatPrize(prize, upgraded);
-        document.getElementById('gacha-slot').innerText = prize.name;
-        document.getElementById('result').innerText = prizeDetails;
-    } else {
-        document.getElementById('result').innerText = "Try again!";
-    }
-}
 
-function formatPrize(prize, upgraded) {
-    let details = `You won: ${prize.name}, ${prize.stats || prize.effect || prize.special || "No additional details"}`;
-    if (upgraded) details += ` (Upgraded!)`;
-    return details;
+    // Randomly select an item from the chosen group
+    const selectedItem = selectedGroup[Math.floor(Math.random() * selectedGroup.length)];
+
+    // Display the result
+    document.getElementById("result").innerHTML = 
+        `You pulled: <strong>${selectedItem.name}</strong> (${selectedItem.rarity})`;
 }
