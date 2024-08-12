@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>It all sucks. You're probably going to die.</title>
+    <title>Prize Machine</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -23,6 +23,7 @@
         .coin {
             margin: 10px;
         }
+        /* Add your updated styles here */
     </style>
 </head>
 <body>
@@ -31,6 +32,7 @@
         <button class="coin" onclick="pullGacha('common')">Common Coin</button>
         <button class="coin" onclick="pullGacha('uncommon')">Uncommon Coin</button>
         <button class="coin" onclick="pullGacha('rare')">Rare Coin</button>
+        <button onclick="resetPrizePool()">Reset Prize Pool</button>
     </div>
     <div id="result"></div>
 
