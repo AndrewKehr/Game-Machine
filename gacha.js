@@ -1,8 +1,5 @@
-// Define the upgrade chance percentage
-const upgradeChance = 0.05; // 5% chance to upgrade
-
 // Prize pools
-const commonPool = [
+const commonItems = [
     { name: "Flannel Shirt", rarity: "Common", stats: "Defense: 12, Slots: 1, Quality: 3" },
     { name: "Leather Jacket", rarity: "Common", stats: "Defense: 13, Slots: 2, Quality: 3" },
     { name: "Some Nerd's Chain Armor", rarity: "Common", stats: "Defense: 14, Slots: 3, Quality: 5, Special: Reduce combat speed by 5" },
@@ -20,7 +17,7 @@ const commonPool = [
     { name: "Laborer Token", rarity: "Common", stats: "Special: A laborer will follow you for 1 day, holding up to 6 slots of items" }
 ];
 
-const uncommonPool = [
+const uncommonItems = [
     { name: "Thieves Knife", rarity: "Uncommon", stats: "Damage: d6 piercing, Slots: 1, Hands: 1, Quality: 3, Bonus: +1 to Dexterity" },
     { name: "Fireman's Axe", rarity: "Uncommon", stats: "Damage: d10 slashing, Slots: 3, Hands: 2, Quality: 3, Special: Freeze enemy in place for 1 round on hit" },
     { name: "Very Sharp Shovel", rarity: "Uncommon", stats: "Damage: d8 slashing, Slots: 2, Hands: 1, Quality: 3, Special: Advantage on damage rolls with this weapon" },
@@ -43,7 +40,7 @@ const uncommonPool = [
     { name: "Spellbook of Feign Death", rarity: "Uncommon", stats: "Fall to the ground unmoving. All enemies will treat you as if you were dead" }
 ];
 
-const rarePool = [
+const rareItems = [
     { name: "Lizard-Skin Catsuit", rarity: "Rare", stats: "Defense: 12, Slots: 1, Quality: 5, Special: Regenerate 1 hp per round" },
     { name: "Gravity Bow", rarity: "Rare", stats: "Damage: d8, Slots: 2, Hands: 2, Quality: 4" },
     { name: "Archmage Bathrobe", rarity: "Rare", stats: "Not armor. Special: Can use spellbooks one additional time" },
@@ -54,61 +51,76 @@ const rarePool = [
     { name: "Plate Carrier of the Mage Hater", rarity: "Rare", stats: "Defense: 15, Slots: 4, Quality: 7, Special: Enemies within 30 ft have -2 Intelligence" }
 ];
 
-// Get a random prize from the pool
-function getRandomPrize(pool) {
-    const index = Math.floor(Math.random() * pool.length);
-    return pool[index];
+// Probabilities
+const probabilities = {
+    common: { common: 70, uncommon: 20, rare: 5, spell: 5 },
+    uncommon: { common: 0, uncommon: 70, rare: 20, spell: 10 },
+    rare: { common: 0, uncommon: 0, rare: 100, spell: 0 },
+};
+
+function getRandomItem(array) {
+    return array[Math.floor(Math.random() * array.length)];
 }
 
-// Upgrade coin type
-function upgradeCoinType(coinType) {
-    switch (coinType) {
-        case 'common':
-            return 'uncommon';
-        case 'uncommon':
-            return 'rare';
-        case 'rare':
-            return 'rare'; // Cannot upgrade Rare
-        default:
-            return coinType;
+function pullGacha(tokenType) {
+    const randomNumber = Math.floor(Math.random() * 100) + 1;
+    let prize = "";
+    let upgraded = false;
+    
+    const isSpell = randomNumber <= probabilities[tokenType].spell;
+    
+    if (tokenType === 'common') {
+        if (isSpell) {
+            prize = getRandomItem(commonSpells);
+        } else {
+            if (randomNumber <= probabilities.common.common) {
+                prize = getRandomItem(commonItems);
+            } else if (randomNumber <= probabilities.common.common + probabilities.common.uncommon) {
+                prize = getRandomItem(uncommonItems);
+                upgraded = true;
+            } else if (randomNumber <= probabilities.common.common + probabilities.common.uncommon + probabilities.common.rare) {
+                prize = getRandomItem(rareItems);
+                upgraded = true;
+            } else {
+                prize = getRandomItem(commonSpells);
+                upgraded = true;
+            }
+        }
+    } else if (tokenType === 'uncommon') {
+        if (isSpell) {
+            prize = getRandomItem(uncommonSpells);
+        } else {
+            if (randomNumber <= probabilities.uncommon.common) {
+                prize = getRandomItem(commonItems);
+            } else if (randomNumber <= probabilities.uncommon.common + probabilities.uncommon.uncommon) {
+                prize = getRandomItem(uncommonItems);
+            } else if (randomNumber <= probabilities.uncommon.common + probabilities.uncommon.uncommon + probabilities.uncommon.rare) {
+                prize = getRandomItem(rareItems);
+                upgraded = true;
+            } else {
+                prize = getRandomItem(uncommonSpells);
+                upgraded = true;
+            }
+        }
+    } else if (tokenType === 'rare') {
+        if (isSpell) {
+            prize = getRandomItem(rareSpells);
+        } else {
+            prize = getRandomItem(rareItems);
+        }
     }
-}
-
-function pullGacha(coinType) {
-    let prizePool = [];
-    let upgradedCoinType = coinType;
-
-    // Determine if the coin type will be upgraded
-    if (Math.random() < upgradeChance) {
-        upgradedCoinType = upgradeCoinType(coinType);
-    }
-
-    // Select the appropriate prize pool based on the coin type
-    if (upgradedCoinType === 'common') {
-        prizePool = commonPool;
-    } else if (upgradedCoinType === 'uncommon') {
-        prizePool = uncommonPool;
-    } else if (upgradedCoinType === 'rare') {
-        prizePool = rarePool;
+    
+    if (prize) {
+        const prizeDetails = formatPrize(prize, upgraded);
+        document.getElementById('gacha-slot').innerText = prize.name;
+        document.getElementById('result').innerText = prizeDetails;
     } else {
-        displayResult({ name: 'Error', rarity: '', stats: 'Invalid coin type!' });
-        return;
+        document.getElementById('result').innerText = "Try again!";
     }
-
-    // Ensure we have prizes in the pool
-    if (prizePool.length === 0) {
-        displayResult({ name: 'Error', rarity: '', stats: 'No prizes available!' });
-        return;
-    }
-
-    // Get a random prize from the selected pool
-    const prize = getRandomPrize(prizePool);
-    displayResult(prize);
-
-    // Log the upgraded coin type for debugging
-    console.log(`Coin type used: ${upgradedCoinType}`);
 }
 
-// Example usage
-// Pull a gacha with 'common' coin type
-pullGacha('common');
+function formatPrize(prize, upgraded) {
+    let details = `You won: ${prize.name}, ${prize.stats || prize.effect || prize.special || "No additional details"}`;
+    if (upgraded) details += ` (Upgraded!)`;
+    return details;
+}
