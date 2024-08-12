@@ -74,7 +74,6 @@ function upgradeCoinType(coinType) {
     }
 }
 
-// Handle gacha pull
 function pullGacha(coinType) {
     let prizePool = [];
     let upgradedCoinType = coinType;
@@ -92,21 +91,21 @@ function pullGacha(coinType) {
     } else if (upgradedCoinType === 'rare') {
         prizePool = rarePool;
     } else {
-        alert('Invalid coin type!');
+        displayResult({ name: 'Error', rarity: '', stats: 'Invalid coin type!' });
         return;
     }
 
     // Ensure we have prizes in the pool
     if (prizePool.length === 0) {
-        alert('No prizes available!');
+        displayResult({ name: 'Error', rarity: '', stats: 'No prizes available!' });
         return;
     }
 
     // Get a random prize from the selected pool
     const prize = getRandomPrize(prizePool);
-    alert(`You won a ${prize.name} (${prize.rarity}) with stats: ${prize.stats}`);
+    displayResult(prize);
 
-    // If you want to log the upgraded coin type for debugging
+    // Log the upgraded coin type for debugging
     console.log(`Coin type used: ${upgradedCoinType}`);
 }
 
