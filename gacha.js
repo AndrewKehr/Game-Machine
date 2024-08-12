@@ -54,10 +54,19 @@ function pullGacha(tokenType) {
         selectedGroup = spellItems;
     }
 
-    // Randomly select an item from the chosen group
-    const selectedItem = selectedGroup[Math.floor(Math.random() * selectedGroup.length)];
+    // Simulate the gacha machine spinning
+    document.getElementById('gacha-slot').style.animation = "spin 1s infinite";
 
-    // Display the result
-    document.getElementById("result").innerHTML = 
-        `You pulled: <strong>${selectedItem.name}</strong> (${selectedItem.rarity})`;
+    // Delay the result to simulate suspense
+    setTimeout(() => {
+        // Stop the spinning animation
+        document.getElementById('gacha-slot').style.animation = "none";
+
+        // Randomly select an item from the chosen group
+        const selectedItem = selectedGroup[Math.floor(Math.random() * selectedGroup.length)];
+
+        // Display the result
+        document.getElementById("result").innerHTML = 
+            `You pulled: <strong>${selectedItem.name}</strong> (${selectedItem.rarity})`;
+    }, 1000);
 }
