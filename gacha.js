@@ -1,5 +1,4 @@
-// gacha.js
-
+// Prize pools
 const commonItems = [
     { name: "Flannel Shirt", rarity: "Common", stats: "Defense: 12, Slots: 1, Quality: 3" },
     { name: "Leather Jacket", rarity: "Common", stats: "Defense: 13, Slots: 2, Quality: 3" },
@@ -56,37 +55,92 @@ const uncommonSpells = [
 ];
 
 const rareSpells = [
-    // Add rare spells here with similar formatting
+    { name: "Spellbook of Time Stop", rarity: "Rare", stats: "Stop time for a few moments" },
+    { name: "Spellbook of Teleport", rarity: "Rare", stats: "Teleport to a location you know" }
 ];
 
-// Function to pull from the gacha machine
+// Probabilities
+const probabilities = {
+    common: { common: 70, uncommon: 20, rare: 5, spell: 5 },
+    uncommon: { common: 0, uncommon: 70, rare: 20, spell: 10 },
+    rare: { common: 0, uncommon: 0, rare: 100, spell: 0 },
+};
+
+function getRandomItem(array) {
+    return array[Math.floor(Math.random() * array.length)];
+}
+
 function pullGacha(tokenType) {
-    let selectedGroup;
-    let originalGroup = [];
-
-    const groupChance = Math.random();
-
-    // Determine the item group based on the token type
+    const randomNumber = Math.floor(Math.random() * 100) + 1;
+    let prize = "";
+    let upgraded = false;
+    
+    const isSpell = randomNumber <= probabilities[tokenType].spell;
+    
     if (tokenType === 'common') {
-        // Common Coin: 60% Common, 30% Uncommon, 10% Rare
-        if (groupChance < 0.6) {
-            selectedGroup = commonItems;
-            originalGroup = commonItems;
-        } else if (groupChance < 0.9) {
-            selectedGroup = uncommonItems.concat(uncommonSpells);
-            originalGroup = commonItems;
+        if (isSpell) {
+            prize = getRandomItem(commonSpells);
         } else {
-            selectedGroup = rareItems.concat(rareSpells);
-            originalGroup = uncommonItems.concat(uncommonSpells);
+            if (randomNumber <= probabilities.common.common) {
+                prize = getRandomItem(commonItems);
+            } else if (randomNumber <= probabilities.common.common + probabilities.common.uncommon) {
+                prize = getRandomItem(uncommonItems);
+                upgraded = true;
+            } else if (randomNumber <= probabilities.common.common + probabilities.common.uncommon + probabilities.common.rare) {
+                prize = getRandomItem(rareItems);
+                upgraded = true;
+            } else {
+                prize = getRandomItem(commonSpells);
+                upgraded = true;
+            }
         }
     } else if (tokenType === 'uncommon') {
-        // Uncommon Coin: 0% Common, 60% Uncommon, 40% Rare
-        if (groupChance < 0.6) {
-            selectedGroup = uncommonItems.concat(uncommonSpells);
-            originalGroup = uncommonItems.concat(uncommonSpells);
+        if (isSpell) {
+            prize = getRandomItem(uncommonSpells);
         } else {
-            selectedGroup = rareItems.concat(rareSpells);
-            originalGroup = uncommonItems.concat(uncommonSpells);
+            if (randomNumber <= probabilities.uncommon.common) {
+                prize = getRandomItem(commonItems);
+            } else if (randomNumber <= probabilities.uncommon.common + probabilities.uncommon.uncommon) {
+                prize = getRandomItem(uncommonItems);
+            } else if (randomNumber <= probabilities.uncommon.common + probabilities.uncommon.uncommon + probabilities.uncommon.rare) {
+                prize = getRandomItem(rareItems);
+                upgraded = true;
+            } else {
+                prize = getRandomItem(uncommonSpells);
+                upgraded = true;
+            }
         }
     } else if (tokenType === 'rare') {
-        // Rare Coin: 
+        if (isSpell) {
+            prize = getRandomItem(rareSpells);
+        } else {
+            prize = getRandomItem(rareItems);
+        }
+    }
+    
+    if (prize) {
+        const prizeDetails = formatPrize(prize, upgraded);
+        document.getElementById('gacha-slot').innerText = prize.name;
+        document.getElementById('result').innerText = prizeDetails;
+    } else {
+        document.getElementById('result').innerText = "Try again!";
+    }
+}
+
+function formatPrize(prize, upgraded) {
+    let details = `You won: ${prize.name}, ${prize.stats || prize.effect || prize.special || "No additional details"}`;
+    if (upgraded) details += ` (Upgraded!)`;
+    return details;
+}
+
+function showItems() {
+    document.getElementById('gacha-slot').classList.remove('hidden');
+    document.getElementById('result').classList.remove('hidden');
+    // Hide spells specific UI elements if any
+}
+
+function showSpells() {
+    document.getElementById('gacha-slot').classList.add('hidden');
+    document.getElementById('result').classList.add('hidden');
+    // Hide items specific UI elements if any
+}
