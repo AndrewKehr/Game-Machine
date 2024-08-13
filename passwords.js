@@ -1,30 +1,16 @@
 // Define the passwords
 const passwords = {
-    uncommon: "uncommonPassword",
-    rare: "rarePassword",
-    special: "specialPassword"
+    uncommon: "Bluechip",
+    rare: "Redisbest",
+    special: "Purple!"
 };
 
-// Function to check password
-function checkPassword(correctPassword) {
+// Function to check password and trigger pullGacha
+function checkPasswordAndPullGacha(correctPassword, gachaType) {
     const userPassword = prompt("Enter the password to proceed:");
     if (userPassword === correctPassword) {
-        alert("Access granted. You may proceed.");
-        // Add the action you want to perform after successful password input
+        pullGacha(gachaType);
     } else {
         alert("Incorrect password. Access denied.");
     }
 }
-
-// Event listeners for each button
-document.getElementById("uncommonButton").addEventListener("click", function() {
-    checkPassword(passwords.uncommon);
-});
-
-document.getElementById("rareButton").addEventListener("click", function() {
-    checkPassword(passwords.rare);
-});
-
-document.getElementById("specialButton").addEventListener("click", function() {
-    checkPassword(passwords.special);
-});
