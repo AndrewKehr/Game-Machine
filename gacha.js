@@ -70,33 +70,40 @@ const specialItems = [
     { name: "Beastlord Class Guide", rarity: "Special", stats: "If you do not have a pet.  Gain a pet immediately.  All of it's stats are equal to your HD.  It deals your HD damage per round and fights with you."},
 ];
 
-// Function to pull from the gacha machine
 function pullGacha(tokenType) {
     let selectedGroup;
+    let message = ""; // Initialize message variable
     const groupChance = Math.random();
 
     if (tokenType === 'common') {
         // Common Coin: 90% Common, 9% Uncommon, 1% Rare
         if (groupChance < 0.9) {
             selectedGroup = commonItems;
+            message = "Common coin, common item.  These things all suck.";
         } else if (groupChance < 0.99) {
             selectedGroup = uncommonItems;
+            message = "Hot damn, your common coin gave you uncommon loot!";
         } else {
             selectedGroup = rareItems;
+            message = "God Damn!  Your common coin upgraded to RARE loot!";
         }
     } else if (tokenType === 'uncommon') {
         // Uncommon Coin: 0% Common, 90% Uncommon, 10% Rare
         if (groupChance < 0.9) {
             selectedGroup = uncommonItems;
+            message = "We put the uncommon item in the uncommon hole.";
         } else {
             selectedGroup = rareItems;
+            message = "WOAH!  We put the RARE ITEM in the uncommon hole.";
         }
     } else if (tokenType === 'rare') {
         // Rare Coin: 100% Rare
         selectedGroup = rareItems;
+        message = "Rare coins always give rare items.  Aren't you lucky?";
     } else if (tokenType === 'special') {
         // Special Coin: 100% Special
         selectedGroup = specialItems;
+        message = "Psst.  Don't tell anyone what you got.  They'll want to take it from you.  These are super secret special items.";
     }
 
     // Randomly select an item from the chosen group
@@ -104,6 +111,6 @@ function pullGacha(tokenType) {
 
     // Display the result
     document.getElementById("result").innerHTML = 
-        `You pulled: <strong>${selectedItem.name}</strong> (${selectedItem.rarity})<br>
+        `${message}<br>You pulled: <strong>${selectedItem.name}</strong> (${selectedItem.rarity})<br>
         Stats: <strong>${selectedItem.stats}</strong>`;
 }
