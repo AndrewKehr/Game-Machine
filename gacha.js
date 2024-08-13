@@ -43,7 +43,14 @@ const commonItems = [
     { name: "Half of a ribeye, on a fork", rarity: "Common", stats: "Feeds you for an entire day!" },
     { name: "A single stick of Three-Course Dinner Chewing Gum, which tastes like tomato soup, roast beef and baked potato, and blueberry pie and ice cream.", rarity: "Common", stats: "Feeds you for an entire day!" },
     { name: "Leftovers from someone's fridge.  It doesn't look great at all.", rarity: "Common", stats: "Feeds you for an entire day!" },
-    { name: "Love Sausage.", rarity: "Common", stats: " Fills you in the best way possible. Feeds you for an entire day!" }
+    { name: "Love Sausage.", rarity: "Common", stats: " Fills you in the best way possible. Feeds you for an entire day!" },
+    { name: "Spellbook of Disassemble", rarity: "Common", stats: "Any of your body parts may be detached and reattached at will without pain or damage for int rounds.  You still control them" },
+    { name: "Spellbook of Tongues", rarity: "Common", stats: "You're able to speak any language for int minutes." },
+    { name: "Spellbook of Attach", rarity: "Common", stats: "Two things within 30 ft of you and each other are stuck together for int minutes" },
+    { name: "Spellbook of Push", rarity: "Common", stats: "Forcefully shove any one thing within 30 ft to exactly 30 ft away from you." },
+    { name: "Spellbook of Restoration", rarity: "Common", stats: "Remove all ailments from one ally within 30 ft." },
+    { name: "Spellbook of Pull", rarity: "Common", stats: "Forcefully pull any one thing within 30 ft to melee range of you." }
+
 ];
 
 const uncommonItems = [
@@ -118,7 +125,7 @@ const rareItems = [
     { name: "Stupid Plate Carrier", rarity: "Rare", stats: "Defense: 15, Slots: 4, Quality: 7, Special: Enemies within 30 ft have -2 Intelligence" },
     { name: "Spellbook of Succor", rarity: "Rare", stats: "Teleport yourself and all allies within 30 ft to the nearest safe zone" },
     { name: "Spellbook of Cripple", rarity: "Rare", stats: "Decrease a target's strength and dexterity by 3 for Intelligence rounds" },
-    { name: "Spellbook of Word of Restoration", rarity: "Rare", stats: "Heal all allies within 30 ft wis(d6) hp and cure all ailments" },
+    { name: "Spellbook of Word of Restoration", rarity: "Rare", stats: "Heal all allies within 30 ft for wis(d6) hp and cure all ailments" },
     { name: "Spellbook of Lifetap", rarity: "Rare", stats: "Deal int damage to a target within 30 ft.  Heal self for con(d4) hp" },
     { name: "Spellbook of Panic", rarity: "Rare", stats: "One enemy within 30 ft is stricken with fear and will run at full speed away from you for int rounds" },
     { name: "Spellbook of Frenzy", rarity: "Rare", stats: "One target within 30 ft gains +2 to str, dex, con and -2 to armor bonus" },
