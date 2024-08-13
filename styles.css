@@ -1,142 +1,63 @@
-/* Basic Reset */
+/* Reset some basic styles */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Container for the Gacha Machine */
-.gacha-container {
-    width: 320px;
-    margin: 50px auto;
-    text-align: center;
+/* Apply a background gradient to the whole page */
+body {
     font-family: 'Arial', sans-serif;
-}
-
-/* Machine Wrapper */
-.machine-wrapper {
-    background: linear-gradient(145deg, #f3f4f6, #e6e9ef);
-    border-radius: 20px;
-    box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.2), -4px -4px 12px rgba(255, 255, 255, 0.5);
-    padding: 20px;
-    position: relative;
-    transition: transform 0.3s, box-shadow 0.3s;
-}
-
-/* Title */
-.machine-title {
-    font-size: 26px;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 20px;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-}
-
-/* Coin Selector */
-.coin-selector {
-    margin-bottom: 20px;
-}
-
-.coin-selector select {
-    width: 100%;
-    padding: 10px;
-    border-radius: 12px;
-    border: 2px solid #007bff;
-    background: #fff;
-    font-size: 16px;
-    color: #333;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: border-color 0.3s, box-shadow 0.3s, background-color 0.3s;
-}
-
-.coin-selector select:hover {
-    border-color: #0056b3;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    background-color: #f0f8ff;
-}
-
-/* Button */
-.pull-button {
-    background: linear-gradient(145deg, #ff6b6b, #ff3d3d);
+    background: linear-gradient(to right, #ff7e5f, #feb47b);
     color: #fff;
-    border: none;
-    border-radius: 12px;
-    padding: 15px 30px;
-    font-size: 18px;
+    text-align: center;
+    padding: 2rem;
+}
+
+/* Style the main heading */
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+/* Style the paragraph */
+p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    color: #fff;
+    font-style: italic;
+}
+
+/* Style the buttons */
+button {
+    background-color: #333;
+    color: #fff;
+    border: 2px solid #fff;
+    border-radius: 8px;
+    padding: 1rem 2rem;
+    font-size: 1rem;
     cursor: pointer;
-    transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
-    margin-top: 20px;
-    position: relative;
-    overflow: hidden;
+    margin: 0.5rem;
+    transition: background-color 0.3s, transform 0.2s;
 }
 
-.pull-button::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 300%;
-    height: 300%;
-    background: rgba(255, 255, 255, 0.2);
-    transition: transform 0.5s;
-    transform: translate(-50%, -50%) scale(0);
-    border-radius: 50%;
-}
-
-.pull-button:hover::after {
-    transform: translate(-50%, -50%) scale(1);
-}
-
-.pull-button:hover {
+button:hover {
+    background-color: #555;
     transform: scale(1.05);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
 }
 
-/* Prize Display */
-.prize-display {
-    margin-top: 20px;
-    padding: 20px;
-    background: #fff;
-    border-radius: 12px;
-    border: 2px solid #e6e9ef;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s;
+button:active {
+    background-color: #777;
+    transform: scale(0.95);
 }
 
-.prize-display:hover {
-    background-color: #f9f9f9;
-}
-
-/* Prize Title */
-.prize-display h3 {
-    font-size: 22px;
-    color: #007bff;
-    margin-bottom: 10px;
-    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
-}
-
-/* Prize Text */
-.prize-display p {
-    font-size: 18px;
-    color: #333;
-}
-
-/* Animation */
-@keyframes pulse {
-    0% {
-        transform: scale(1);
-        opacity: 1;
-    }
-    50% {
-        transform: scale(1.05);
-        opacity: 0.8;
-    }
-    100% {
-        transform: scale(1);
-        opacity: 1;
-    }
-}
-
-.machine-wrapper {
-    animation: pulse 2s infinite;
+/* Style the result display */
+#result {
+    margin-top: 2rem;
+    font-size: 1.5rem;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
 }
