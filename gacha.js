@@ -126,6 +126,7 @@ const rareItems = [
     { name: "Spellbook of Succor", rarity: "Rare", stats: "Teleport yourself and all allies within 30 ft to the nearest safe zone" },
     { name: "Spellbook of Cripple", rarity: "Rare", stats: "Decrease a target's strength and dexterity by 3 for Intelligence rounds" },
     { name: "Spellbook of Word of Restoration", rarity: "Rare", stats: "Heal all allies within 30 ft for wis(d6) hp and cure all ailments" },
+    { name: "Spellbook of Spellsieze", rarity: "Rare", stats: "Make an int roll vs caster of a spell int defense. If you win, their spell is canceled and you may immediately cast that spell." },
     { name: "Spellbook of Lifetap", rarity: "Rare", stats: "Deal int damage to a target within 30 ft.  Heal self for con(d4) hp" },
     { name: "Spellbook of Panic", rarity: "Rare", stats: "One enemy within 30 ft is stricken with fear and will run at full speed away from you for int rounds" },
     { name: "Spellbook of Frenzy", rarity: "Rare", stats: "One target within 30 ft gains +2 to str, dex, con and -2 to armor bonus" },
