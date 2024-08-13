@@ -11,6 +11,6 @@ function checkPasswordAndPullGacha(correctPassword, gachaType) {
     if (userPassword === correctPassword) {
         pullGacha(gachaType);
     } else {
-        alert("Incorrect password. Access denied.");
+        alert("Yeah right, I knew you didn't have a good coin.  Tough luck.  Also - I'm telling on you.");
     }
 }
