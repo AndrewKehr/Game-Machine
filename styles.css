@@ -14,9 +14,20 @@ body {
     padding: 2rem;
 }
 
+/* Style the container for the machine */
+#machine {
+    background: #333;
+    border-radius: 20px;
+    padding: 2rem;
+    width: 300px;
+    margin: 0 auto;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+    position: relative;
+}
+
 /* Style the main heading */
 h1 {
-    font-size: 2.5rem;
+    font-size: 2rem;
     margin-bottom: 1rem;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
 }
@@ -31,33 +42,49 @@ p {
 
 /* Style the buttons */
 button {
-    background-color: #333;
+    background-color: #555;
     color: #fff;
     border: 2px solid #fff;
     border-radius: 8px;
-    padding: 1rem 2rem;
+    padding: 1rem;
     font-size: 1rem;
     cursor: pointer;
-    margin: 0.5rem;
+    margin: 0.5rem 0;
     transition: background-color 0.3s, transform 0.2s;
+    width: 100%;
 }
 
 button:hover {
-    background-color: #555;
+    background-color: #777;
     transform: scale(1.05);
 }
 
 button:active {
-    background-color: #777;
+    background-color: #999;
     transform: scale(0.95);
 }
 
 /* Style the result display */
 #result {
-    margin-top: 2rem;
+    margin-top: 1rem;
     font-size: 1.5rem;
     background: rgba(0, 0, 0, 0.6);
     padding: 1rem;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+}
+
+/* Style the container for the machine and its elements */
+#machine {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#machine h1 {
+    margin-bottom: 1rem;
+}
+
+#machine p {
+    margin-bottom: 1.5rem;
 }
