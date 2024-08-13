@@ -19,8 +19,9 @@ body {
     background: #333;
     border-radius: 20px;
     padding: 2rem;
-    width: 800px; /* Adjust width as needed */
-    margin: 0 auto;
+    width: 50%; /* Set the width to 50% of the browser window */
+    max-width: 600px; /* Optional: Set a maximum width to prevent it from getting too wide */
+    margin: 0 auto; /* Center the container horizontally */
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
     position: relative;
     display: flex;
