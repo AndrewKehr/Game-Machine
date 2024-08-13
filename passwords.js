@@ -1,7 +1,7 @@
 // Define the passwords
 const passwords = {
-    uncommon: "Bluechip",
-    rare: "Redisbest",
+    uncommon: "Redisbest",
+    rare: "Bluechip",
     special: "Purple!"
 };
 
