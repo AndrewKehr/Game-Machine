@@ -14,16 +14,3 @@ function checkPasswordAndPullGacha(correctPassword, gachaType) {
         alert("Incorrect password. Access denied.");
     }
 }
-
-// Event listeners for each password-protected pull
-document.getElementById("uncommonButton").addEventListener("click", function() {
-    checkPasswordAndPullGacha(passwords.uncommon, 'uncommon');
-});
-
-document.getElementById("rareButton").addEventListener("click", function() {
-    checkPasswordAndPullGacha(passwords.rare, 'rare');
-});
-
-document.getElementById("specialButton").addEventListener("click", function() {
-    checkPasswordAndPullGacha(passwords.special, 'special');
-});
