@@ -4,18 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>It's all bad.  You're probably going to die.</title>
-        <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Loot Machine</h1>
-    <p>Insert coin and press the button</p>
+    <div id="machine">
+        <h1>Loot Machine</h1>
+        <p>Insert coin and press the button</p>
         <button onclick="pullGacha('common')">I bet you have a bunch of white coins</button>
         <button onclick="checkPasswordAndPullGacha(passwords.uncommon, 'uncommon')">Red coins are better than white</button>
         <button onclick="checkPasswordAndPullGacha(passwords.rare, 'rare')">Blue coins are definitely the best</button>
         <button onclick="checkPasswordAndPullGacha(passwords.special, 'special')">Holy shit, you have a Purple coin?!?</button>
-
-    <div id="result"></div>
-
+        <div id="result"></div>
+    </div>
     <script src="gacha.js"></script>
     <script src="passwords.js"></script>
 </body>
