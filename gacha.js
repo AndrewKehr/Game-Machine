@@ -30,7 +30,7 @@ const uncommonItems = [
     { name: "Golf Bag", rarity: "Uncommon", stats: "-4 slots" },
     { name: "Booze", rarity: "Uncommon", stats: "Drink to heal d4 hp. Reduce wisdom by 1 until next rest" },
     { name: "Spellbook of Cure", rarity: "Uncommon", stats: "Heal Wisdom(d4) damage at melee range" },
-    { name: "Spellbook of Blast", rarity: "Uncommon", stats: "Deal Intelligence(d6) damage at range" },
+    { name: "Spellbook of Elemental Bolt", rarity: "Uncommon", stats: "Deal Intelligence(d6) damage to a target within 30 ft" },
     { name: "Spellbook of Fate", rarity: "Uncommon", stats: "Gain advantage on your next roll" },
     { name: "Spellbook of Snare", rarity: "Uncommon", stats: "Reduce the speed of a single target to 10 ft for Intelligence rounds" },
     { name: "Spellbook of Counterspell", rarity: "Uncommon", stats: "Make an opposed Intelligence roll vs caster of a spell. If you win, their spell is canceled" },
@@ -46,14 +46,28 @@ const rareItems = [
     { name: "Archmage Bathrobe", rarity: "Rare", stats: "Not armor. Special: Can use spellbooks one additional time" },
     { name: "Fanny Pack of Hauling", rarity: "Rare", stats: "-5 slots" },
     { name: "Royal Crown", rarity: "Rare", stats: "Non-aggressive NPCs will treat you as royalty. Bonus: +2 Charisma" },
-    { name: "Knockout Hammer", rarity: "Rare", stats: "Damage: d6, Slots: 2, Hands: 1, Quality: 3, Special: If max damage is rolled, knock enemy out for Strength rounds" },
+    { name: "Knockout Hammer", rarity: "Rare", stats: "Damage: d6, Slots: 2, Hands: 1, Quality: 3, Special: If max damage is rolled, knock the enemy out for Strength rounds" },
     { name: "Cleaving Doppelhander", rarity: "Rare", stats: "Damage: d10, Slots: 3, Hands: 2, Quality: 3, Special: d2 chance to roll damage a second time and add them together" },
-    { name: "Plate Carrier of the Mage Hater", rarity: "Rare", stats: "Defense: 15, Slots: 4, Quality: 7, Special: Enemies within 30 ft have -2 Intelligence" }
+    { name: "Plate Carrier of the Mage Hater", rarity: "Rare", stats: "Defense: 15, Slots: 4, Quality: 7, Special: Enemies within 30 ft have -2 Intelligence" },
+    { name: "Spellbook of Succor", rarity: "Rare", stats: "Teleport yourself and all allies within 30 ft to the nearest safe zone" },
+    { name: "Spellbook of Cripple", rarity: "Rare", stats: "Decrease a target's strength and dexterity by 3 for Intelligence rounds" },
+    { name: "Spellbook of Word of Restoration", rarity: "Rare", stats: "Heal all allies within 30 ft wis(d6) hp and cure all ailments" },
+    { name: "Spellbook of Lifetap", rarity: "Rare", stats: "Deal int damage to a target within 30 ft.  Heal self for con(d4) hp" },
+    { name: "Spellbook of Panic", rarity: "Rare", stats: "One enemy within 30 ft is stricken with fear and will run at full speed away from you for int rounds" },
+    { name: "Spellbook of Frenzy", rarity: "Rare", stats: "One target within 30 ft gains +2 to str, dex, con and -2 to armor bonus" },
+    { name: "Spellbook of Incite", rarity: "Rare", stats: "Force one enemy within 30 ft to attack you for int rounds.  You may not retreat from this enemy else the effect is broken." },
+    { name: "Spellbook of Elemental Blast", rarity: "Rare", stats: "Deal int(d6) damage to a target and all other targets within IntDefense feet of the target." },
 ];
 
 const specialItems = [
-    {},
-    {}
+    { name: "Cleric Class Guide", rarity: "Special", stats: "Permanent +2 to wis.  Can cast 'Ressurection' once ever, restoring a slain party member to full life.  You can only ever have 1 class."},
+    { name: "Assassin Class Guide", rarity: "Special", stats: "Permanent +2 to dex.  If you kill an enemy using a melee sneak attack stealth is not broken.  You can only ever have 1 class."},
+    { name: "Glass Cannon Class Guide", rarity: "Special", stats: "Permanent +2 to int.  Your spells use 'int*1.5' instead of 'int'.  You can only ever have 1 class."},
+    { name: "Tank Class Guide", rarity: "Special", stats: "Permanent +2 to con.  You may immediately attack any enemy that misses you once per round  You can only ever have 1 class."},
+    { name: "Berserker Class Guide", rarity: "Special", stats: "Permanent +2 to str.  Your melee attacks add your str bonus to damage  You can only ever have 1 class."},
+    { name: "Beguiler Class Guide", rarity: "Special", stats: "Permanent +2 to cha.  You can use your charismatic wiles on hostile enemies  You can only ever have 1 class."},
+    { name: "Race change Scroll", rarity: "Special", stats: "Talk to the referee after the game.  Do not mention out loud that you won this."},
+    { name: "Beastlord Class Guide", rarity: "Special", stats: "If you do not have a pet.  Gain a pet immediately.  All of it's stats are equal to your HD.  It deals your HD damage per round and fights with you."},
 ];
 
 // Function to pull from the gacha machine
