@@ -95,14 +95,15 @@ function pullGacha(tokenType) {
         // Rare Coin: 100% Rare
         selectedGroup = rareItems;
     } else if (tokenType === 'special') {
-        //Special coins are special
+        // Special Coin: 100% Special
         selectedGroup = specialItems;
+    }
 
     // Randomly select an item from the chosen group
     const selectedItem = selectedGroup[Math.floor(Math.random() * selectedGroup.length)];
 
     // Display the result
     document.getElementById("result").innerHTML = 
-            `You pulled: <strong>${selectedItem.name}</strong> (${selectedItem.rarity})<br>
-            Stats: <strong>${selectedItem.stats}</strong>`;
+        `You pulled: <strong>${selectedItem.name}</strong> (${selectedItem.rarity})<br>
+        Stats: <strong>${selectedItem.stats}</strong>`;
 }
