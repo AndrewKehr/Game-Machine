@@ -25,10 +25,11 @@
 <body>
     <h1>Loot Machine</h1>
     <p>Insert coin and press the button</p>
-    <button onclick="pullGacha('common')">I bet you have a bunch of white coins</button>
-    <button onclick="pullGacha('uncommon')">Red coins are better than white</button>
-    <button onclick="pullGacha('rare')">Blue coins are definitely the best</button>
-    <button onclick="pullGatcha('special')">"Holy shit, you have a Purple coin?!?</button>
+        <button onclick="pullGacha('common')">I bet you have a bunch of white coins</button>
+        <button onclick="checkPasswordAndPullGacha(passwords.uncommon, 'uncommon')">Red coins are better than white</button>
+        <button onclick="checkPasswordAndPullGacha(passwords.rare, 'rare')">Blue coins are definitely the best</button>
+        <button onclick="checkPasswordAndPullGacha(passwords.special, 'special')">Holy shit, you have a Purple coin?!?</button>
+
     <div id="result"></div>
 
     <script src="gacha.js"></script>
