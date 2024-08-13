@@ -157,6 +157,6 @@ function pullGacha(tokenType) {
 
     // Display the result
     document.getElementById("result").innerHTML = 
-        `${message}<br><br>A small plastic egg falls into the chute at the bottom of the machine.  You open it and find: <br><br><strong>${selectedItem.name}</strong> (${selectedItem.rarity})<br>
+        `${message}<br><br>A small plastic egg falls into the chute at the bottom of the machine.  You open it and find: <br><br><strong>${selectedItem.name}</strong> (${selectedItem.rarity})<br><br>
         Stats: <strong>${selectedItem.stats}</strong>`;
 }
