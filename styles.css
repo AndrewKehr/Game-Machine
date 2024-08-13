@@ -19,10 +19,13 @@ body {
     background: #333;
     border-radius: 20px;
     padding: 2rem;
-    width: 300px;
+    width: 350px; /* Adjust width as needed */
     margin: 0 auto;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
     position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 /* Style the main heading */
@@ -35,7 +38,7 @@ h1 {
 /* Style the paragraph */
 p {
     font-size: 1.2rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem; /* Adjusted margin to fit with the stacked buttons */
     color: #fff;
     font-style: italic;
 }
@@ -46,12 +49,12 @@ button {
     color: #fff;
     border: 2px solid #fff;
     border-radius: 8px;
-    padding: 1rem;
-    font-size: 1rem;
+    padding: 1.5rem 2rem; /* Larger padding */
+    font-size: 1.2rem; /* Larger font size */
     cursor: pointer;
-    margin: 0.5rem 0;
+    margin: 0.5rem 0; /* Stack buttons vertically with margin */
     transition: background-color 0.3s, transform 0.2s;
-    width: 100%;
+    width: 100%; /* Full width of the container */
 }
 
 button:hover {
@@ -72,19 +75,4 @@ button:active {
     padding: 1rem;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
-}
-
-/* Style the container for the machine and its elements */
-#machine {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-#machine h1 {
-    margin-bottom: 1rem;
-}
-
-#machine p {
-    margin-bottom: 1.5rem;
 }
